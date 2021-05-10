@@ -1,0 +1,16 @@
+server:
+    port: 8443
+    ssl:
+        key-store: ./store/keystore.jks
+        key-store-password: qwert123
+        key-alias: localhost
+        key-password: qwert123
+        enabled: true
+        trust-store: ./store/truststore.jks
+        trust-store-password: qwert123
+        client-auth: need
+spring:
+    security:
+        user:  
+            name: Admin
+            password: admin
