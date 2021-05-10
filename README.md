@@ -1,3 +1,5 @@
-# spring-security-web-x509-kt
+# Spring Security Web x509 in kotlin
 
-## mutual ssl authentication
+### Mutual ssl authentication
+
+ * Based on Baeldung tutorial: [x-509-authentication-in-spring-security](https://www.baeldung.com/x-509-authentication-in-spring-security)
