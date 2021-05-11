@@ -14,3 +14,5 @@ spring:
         user:  
             name: Admin
             password: admin
+allowed:
+    user: Bob

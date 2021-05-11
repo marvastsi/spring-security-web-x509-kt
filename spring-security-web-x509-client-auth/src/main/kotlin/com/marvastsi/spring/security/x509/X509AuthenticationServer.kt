@@ -1,5 +1,6 @@
 package com.marvastsi.spring.security.x509
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
@@ -15,7 +16,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 @SpringBootApplication
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-class X509AuthenticationServer : WebSecurityConfigurerAdapter() {
+class X509AuthenticationServer(
+	@Value("\${allowed.user}") private val allowedUser: String
+) : WebSecurityConfigurerAdapter() {
 	@Throws(Exception::class)
 	override fun configure(http: HttpSecurity) {
 		http.authorizeRequests().anyRequest().authenticated()
@@ -28,10 +31,10 @@ class X509AuthenticationServer : WebSecurityConfigurerAdapter() {
 	@Bean
 	override fun userDetailsService(): UserDetailsService? {
 		return UserDetailsService { username ->
-			if (username == "Bob") {
+			if (username == allowedUser) {
 				return@UserDetailsService User(
 					username,
-					"qwert123",
+					"",
 					AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER")
 				)
 			}
